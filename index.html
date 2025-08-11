@@ -85,11 +85,13 @@
    function displayTotalWordCount() {
       const IntroductionCount = displayWordCount("Abstract_inText");
       const AnalysisCount = displayWordCount("Introduction_inText");
-       document.getElementbyId("totalWordCount").innerText = 'Total word count: ${totalWordCount};
+      const totalWordCount = AbstractCount + IntroductionCount;
+      document.getElementbyId("totalWordCount").innerText = 'Total word count: ${totalWordCount};
    }
-      window.onload = displayTotalWordCount;
+         window.onload = displayTotalWordCount;
       </script>
-      
+
+      <h3 id"
    
    
 
