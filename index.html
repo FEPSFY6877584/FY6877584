@@ -93,8 +93,37 @@
       </script>
 
       <h3 id"
+   <div id="last-updated"> loading last update time..</div>
+         <button
    
-   
+<p>Last updated: <span>2025-08-11</span></p>
 
+            const desiredRepo = "your-username/your-repo-name"; // Replace with your repository
+const dateTagClass = ".last-modified-date"; // Class of the element to update
+
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    let repos = JSON.parse(this.responseText);
+    repos.forEach((repo) => {
+      if (repo.name === desiredRepo.split('/')[1]) { // Extract repo name from desiredRepo
+        var lastUpdated = new Date(repo.updated_at);
+        var day = lastUpdated.getUTCDate();
+        var month = lastUpdated.getUTCMonth() + 1; // Month is 0-indexed
+        var year = lastUpdated.getUTCFullYear();
+        document.querySelector(dateTagClass).textContent = `Last updated: ${year}-${month}-${day}`;
+      }
+    });
+  }
+};
+xhttp.open("GET", `https://api.github.com/repos/${desiredRepo}`, true); // API endpoint for a specific repo
+xhttp.send();
+
+   {% if page.last_modified_at %}
+  Last updated: {{ page.last_modified_at | date: "%Y-%m-%d" }}
+{% else %}
+  Published: {{ page.date | date: "%Y-%m-%d" }}
+{% endif %}
+         
 
     
