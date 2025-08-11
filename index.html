@@ -72,12 +72,29 @@
 <body>
    <div class="container">
       <h2>Word Counter</h2>
-      <textarea id="text-input" placeholder="Start typing..."></textarea>
-      <p>Word Count: <span id= "word-count">0</span></p>
-   </div>
-   <script src="scripts.js"></script>
-</body>
+      
+<div>
+   <p>Word Count: <span id="wordCountDisplay">0</span></p>
+       <p>Total Words: <span id="wordCountDisplay">0</span></p>
 
+        <script>
+            function countWords(elementId) {
+                const element = document.getElementById(elementId);
+                if (!element) {
+                    console.error(`Element with ID '${elementId}' not found.`);
+                    return 0;
+                }
+                const text = element.innerText || element.textContent;
+                const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+                return words.length;
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const wordCount = countWords('mainContent');
+                document.getElementById('wordCountDisplay').innerText = wordCount;
+            });
+        </script>
+</div>
    
 
 
